@@ -7,7 +7,9 @@ import DocInfo from './Components/DocInfo/DocInfo';
 import { duration } from '@mui/material';
 import gsap from "gsap";
 import { ScrollTrigger } from 'gsap/all';
-import { symptomsPost } from '../api/api';
+import { symptomsPost} from '../api/api';
+import VideoChat from './Components/VideoCall/VideoChat';
+
 import Signup from './Components/SIgnUp/Signup';
 
 
@@ -46,7 +48,8 @@ function App() {
 
 
     <Nav/> 
-    <Signup/>
+    <VideoChat/>
+    {/* <Signup/> */}
 
      {/* {showRef && <Symptoms onData={handleInputData} onClick={handleSubmitClick}/>}
      

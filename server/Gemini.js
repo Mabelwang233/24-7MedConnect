@@ -37,7 +37,7 @@ const chatSession = model.startChat({
     ],
 });
 
-const message = "Given the below symptom, tell me which kind of doctor I should look for from the below category: Family Medicine, Emergency Medicine, Diagnostic radiology, Dermatology, Anesthesiology, Allergy and Immunology, Internal Medicine, Nuclear Medicine, Obstetrics and Gynecology, Ophthalmology, Pathology, Physical medicine and Rehabilitation, Urology, Dental. Just give me the possible specialization list without reasoning, only words seperated by commas, no other symbols in the output" + prompt
+const message = "Given the below symptom, tell me which kind of doctor I should look for from the below category: Family Medicine, Emergency Medicine, Diagnostic radiology, Dermatology, Anesthesiology, Allergy and Immunology, Internal Medicine, External Medicine, Nuclear Medicine, Obstetrics and Gynecology, Ophthalmology, Pathology, Physical medicine and Rehabilitation, Urology, Dental, Skin. Just give me the possible specialization list without reasoning, only words seperated by commas, no other symbols in the output" + prompt
 const result = await chatSession.sendMessage(message);
 return result.response.text();
 };

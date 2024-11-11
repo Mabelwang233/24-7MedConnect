@@ -56,20 +56,30 @@ main().catch(console.error);
 // Route for registering as a doctor
 app.post('/register/doctor', async (req, res, next) => {
   try {
-    // Get doctor data from the form submission
-    const { Name, Specialty, Languages, Email, Password} = req.body;
 
+    // Get doctor data from the form submission
+    const { name, speciality, language, email, password} = req.body;
+    console.log(req.body);
     // Prepare the new doctor data
     const newDoctor = {
-      Name,
-      Specialty,
-      Languages: Languages,
-      Online_Status: "Online"
+      Name: name,
+      Specialty: speciality,
+      Languages: language,
+      Online_Status: "Online", 
     };
+
+    console.log(newDoctor)
+
+    await client.connect();
+    console.log("Successfully connected to MongoDB!");
+
+    // Confirm successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     // Insert the new doctor data into the 'doctorDB' database, 'doctors' collection
     const database = client.db("doctorDB");
-    const collection = database.collection("doctors");
+    const collection = database.collection("dummyData");
     await collection.insertOne(newDoctor);
 
     res.status(201).send('Doctor registered successfully');

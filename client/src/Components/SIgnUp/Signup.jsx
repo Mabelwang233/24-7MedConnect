@@ -1,5 +1,7 @@
 import React,{useLayoutEffect, useRef, useState} from 'react'; 
 import './Signup.css';
+import { registerDoctor} from '../../../api/api.js';
+
 
 import signUp from '../../Utils/Images/signUp.jpg';
 
@@ -9,6 +11,18 @@ const Signup = () => {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const specialityRef = useRef(null);
+  const languageRef = useRef(null);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [speciality, setSpeciality] = useState("");
+  const [language, setLanguage] = useState("");
+
+
+  const emailRefIn = useRef(null);
+  const passwordRefIn = useRef(null);
   const [patient, setPatient] = useState(true);
 
 
@@ -27,12 +41,25 @@ const Signup = () => {
   };
 
 
-    const onSignUpClick = () => {
+    const onSignUpClick = async() => {
+      if(nameRef.current.value == "" || emailRef.current.value == "" || passwordRef.current.value == "")
+      {
+        window.alert("Please fill in details");
+      }; 
+
+      await registerDoctor({name, email, password, speciality, language})
+      .then((res) => {  
+        console.log(res);
+      })
+    }
+
+      const onSignInClick = () => {
       if(nameRef.current.value == "" || emailRef.current.value == "" || passwordRef.current.value == "")
       {
         window.alert("Please fill in details");
       }
   }
+
 
   return (
     <div className="container">
@@ -48,27 +75,27 @@ const Signup = () => {
         <p>Please Sign Up With Your details</p>
           <div className='inputContainer'>
             <label for="name">Name</label>
-            <input ref={nameRef} name="name" placeholder='Please enter your Full Name'></input>
+            <input onChange={(e) => setName(e.target.value)} ref={nameRef} name="name" placeholder='Please enter your Full Name'></input>
           </div>
 
           <div className='inputContainer'>
             <label for="name">Email</label>
-            <input ref={emailRef} name="name"placeholder='Please enter your Email'/>
+            <input onChange={(e) => setEmail(e.target.value)} ref={emailRef} name="name"placeholder='Please enter your Email'/>
           </div>
 
           <div className='inputContainer'>
             <label for="name">Password</label>
-            <input  ref={passwordRef} name="name" type="password" placeholder='Please enter your Password'></input>
+            <input onChange={(e) => setPassword(e.target.value)} ref={passwordRef} name="name" type="password" placeholder='Please enter your Password'></input>
           </div>
           
           <div className='inputContainer'  style={DoctorSignIn}>
-            <label for="name">Specialty</label>
-            <input ref={emailRef} name="name"placeholder='Please enter your Speciality'/>
+            <label for="Specialty">Specialty</label>
+            <input onChange={(e) => setSpeciality(e.target.value)} ref={specialityRef} name="Specialty"placeholder='Please enter your Speciality'/>
           </div>
 
           <div className='inputContainer'  style={DoctorSignIn}>
-            <label for="name">Languages</label>
-            <input  ref={passwordRef} name="name" type="password" placeholder='Please enter your Languages'></input>
+            <label for="Languages">Languages</label>
+            <input onChange={(e) => setLanguage(e.target.value)} ref={languageRef}  name="Languages" placeholder='Please enter your Languages'></input>
           </div>
 
           <div className='doctorPatient'>
@@ -93,13 +120,13 @@ const Signup = () => {
         <div className="signUp" style={signInUp}>
         <p>Please Sign In With Your details</p>
           <div className='inputContainer'>
-            <label for="name">Email</label>
-            <input name="name"placeholder='Please enter your Email'/>
+            <label for="email">Email</label>
+            <input ref={emailRefIn} name="email"placeholder='Please enter your Email'/>
           </div>
 
           <div className='inputContainer'>
             <label for="name">Password</label>
-            <input name="name" type="password"  placeholder='Please enter your Password'></input>
+            <input ref={passwordRefIn} name="name" type="password"  placeholder='Please enter your Password'></input>
           </div>
 
           <div className='inputContainer'>

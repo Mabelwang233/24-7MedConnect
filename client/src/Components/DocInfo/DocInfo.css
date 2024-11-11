@@ -13,13 +13,6 @@
 }
 
 
-img{
-    width: 100%; /* Set the width */
-    height: 100%;
-    object-fit: cover;
-}
-
-
 .imgContainer{
     flex: 2;
     width: 20vw;
@@ -28,7 +21,7 @@ img{
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 50%; 
+    border-radius: 20px; 
     background-color: #f0f0f0; 
 }
 

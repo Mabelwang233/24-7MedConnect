@@ -20,7 +20,7 @@ const DocInfo = (props) => {
         <div className='nameContainer'>
             <h1>{Name}</h1>
         </div>
-        <div className="imgContainer imageContainer">
+        <div className="imgContainer">
             <img src={doc}></img>
         </div>
         <div className="infoContainer">
