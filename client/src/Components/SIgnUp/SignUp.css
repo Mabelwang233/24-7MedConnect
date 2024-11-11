@@ -108,6 +108,10 @@ h3{
     margin: 0px;
 }
 
+button{
+    background-color: rgba(0,0,0,0.8);
+}
+
 @media (max-width: 600px) {
     .left{
         display: none;
