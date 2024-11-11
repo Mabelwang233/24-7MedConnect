@@ -63,8 +63,8 @@ app.post('/register/doctor', async (req, res, next) => {
     const newDoctor = {
       Name,
       Specialty,
-      Languages: Languages.split(','), // Convert languages to an array
-      Online_Status: true,
+      Languages: Languages,
+      Online_Status: "Online"
     };
 
     // Insert the new doctor data into the 'doctorDB' database, 'doctors' collection
@@ -87,8 +87,28 @@ app.post('/symptoms', async(req, res, next) => {
     console.log(prompt);
     const answer = await run("" + prompt);
     console.log(answer);
-    
-    // res.status(200).send({ message: "AI analysis complete", output });
+
+    const specialties = answer.split(',').map(specialty => specialty.trim());
+    console.log(specialties);
+
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    const database = client.db("doctorDB");
+    const collection = database.collection("dummyData");
+
+    const doctors = await collection.find({ Specialty: { $in: specialties } }).toArray();
+    console.log("Total doctors found:", doctors.length);
+    // Extract just the names of the doctors
+    // const doctorNames = doctors.map(doctor => doctor.Name);
+
+    // Return the list of doctor names as a JSON response to the frontend
+    console.log(doctors);
+    return res.status(200).json({
+      message: doctors.length > 0 ? "Doctors found" : "No doctors found with the specified specialties.",
+      doctors: doctors
+    });
   }
     
 
