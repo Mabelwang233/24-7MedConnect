@@ -5,7 +5,7 @@ const API = axios.create({
 }); 
 
 
-export const symptomsPost = async(data) => {console.log(data);API.post("/symptoms", data)};
+export const symptomsPost = async(data) => await API.post("/symptoms", data);
 
 
 export default API;
