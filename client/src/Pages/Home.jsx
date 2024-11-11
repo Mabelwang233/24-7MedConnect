@@ -20,11 +20,12 @@ const Home = () => {
       if(symptoms === ""){
         window.alert("BAD");
       }
+      else{
       await symptomsPost({symptoms})
       .then((res) => {
         setDocs(res.data.doctors);
         setShowRef(false);
-      })
+      })}
     } catch (error) {
       
     }
