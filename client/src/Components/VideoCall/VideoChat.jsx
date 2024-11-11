@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Peer from 'peerjs';
+import './VideoChat.css'; 
+import Nav from '../Nav/Nav';
+
+
+
 
 function VideoChat() {
   const localVideoRef = useRef(null);
@@ -9,14 +14,14 @@ function VideoChat() {
 
   useEffect(() => {
     // Create a new PeerJS instance
-    peer.current = new Peer("Hackcamp2024");
+    peer.current = new Peer("Hacker22");
 
     // Get local media
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((stream) => {
         // Display local video
         localVideoRef.current.srcObject = stream;
-
+        console.log("received call");
         // Call this peer with the local stream
         peer.current.on('call', (call) => {
           call.answer(stream); // Answer the call with the local stream
@@ -64,17 +69,17 @@ function VideoChat() {
   };
 
   return (
-    <div>
-      <h1>Inside Video Chat</h1>
-      {/* <p>My Peer ID: {peerId}</p> */}
-      <div>
-        <video ref={localVideoRef} autoPlay muted style={{ width: '300px' }} />
-        <video ref={remoteVideoRef} autoPlay style={{ width: '300px' }} />
+    <>
+    <Nav/>
+    <div className='videoChatcontainer'>
+      <h1>COMING SOON!</h1>
+  
+      <div className='videoContainer'>
+        <video className="vdo" ref={localVideoRef} autoPlay muted />
       </div>
-      <div>
-        <button onClick={() => initiateCall(peerId)}>Call</button>
-      </div>
+
     </div>
+    </>
   );
 }
 

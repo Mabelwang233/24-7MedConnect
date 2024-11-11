@@ -120,8 +120,6 @@ app.post('/symptoms', async(req, res, next) => {
       doctors: doctors
     });
   }
-    
-
  catch (error) {
     console.log(error);
   }

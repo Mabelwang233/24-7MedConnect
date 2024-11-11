@@ -1,6 +1,8 @@
 import React,{useLayoutEffect, useRef, useState} from 'react'; 
 import './Signup.css';
 import { registerDoctor} from '../../../api/api.js';
+import { useNavigate } from 'react-router-dom';
+
 
 
 import signUp from '../../Utils/Images/signUp.jpg';
@@ -19,6 +21,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [speciality, setSpeciality] = useState("");
   const [language, setLanguage] = useState("");
+
+  const navigate = useNavigate();
 
 
   const emailRefIn = useRef(null);
@@ -50,13 +54,19 @@ const Signup = () => {
       await registerDoctor({name, email, password, speciality, language})
       .then((res) => {  
         console.log(res);
-      })
+      }); 
+
+      
+
     }
 
       const onSignInClick = () => {
-      if(nameRef.current.value == "" || emailRef.current.value == "" || passwordRef.current.value == "")
+      if(emailRefIn.current.value == "" || passwordRefIn.current.value == "")
       {
         window.alert("Please fill in details");
+      }
+      else{
+        navigate('/home');
       }
   }
 
@@ -72,7 +82,7 @@ const Signup = () => {
           
 
         <div className="signUp" style={signUpIn}>
-        <p>Please Sign Up With Your details</p>
+        <h3>Please Sign Up With Your details</h3>
           <div className='inputContainer'>
             <label for="name">Name</label>
             <input onChange={(e) => setName(e.target.value)} ref={nameRef} name="name" placeholder='Please enter your Full Name'></input>
@@ -110,7 +120,7 @@ const Signup = () => {
           
 
           <div className='bottomButton'>
-            <p>Already a member?</p>
+            <h4>Already a member?</h4>
             <button onClick={() => setUp(!up)}>SignIn</button>
           </div>
 
@@ -130,11 +140,11 @@ const Signup = () => {
           </div>
 
           <div className='inputContainer'>
-          <button onClick={() => onSignUpClick()}>Sign In</button>
+          <button onClick={() => onSignInClick()}>Sign In</button>
           </div>
 
           <div className='bottomButton'>
-            <p>Not a member?</p>
+            <h4>Not a member?</h4>
             <button onClick={() => setUp(!up)}>SignUp</button>
           </div>
 

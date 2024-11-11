@@ -1,14 +1,13 @@
 import React from 'react'; 
 import{ useState, useRef, useEffect} from 'react';
 import './App.css'; 
-import Nav from './Components/Nav/Nav';
-import Symptoms from './Components/Symptoms/Symptoms';
-import DocInfo from './Components/DocInfo/DocInfo';
-import { duration } from '@mui/material';
-import gsap from "gsap";
-import { ScrollTrigger } from 'gsap/all';
 import { symptomsPost} from '../api/api';
 import VideoChat from './Components/VideoCall/VideoChat';
+import MainPage from './Pages/MainPage';
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './Pages/Home';
 
 import Signup from './Components/SIgnUp/Signup';
 
@@ -44,25 +43,14 @@ function App() {
   },[]);
 
   return (
-    <div className="mainContainer">
 
-
-    <Nav/> 
-    <VideoChat/>
-    {/* <Signup/> */}
-
-     {/* {showRef && <Symptoms onData={handleInputData} onClick={handleSubmitClick}/>}
-     
-
-      <div className='containerWrapper'>
-        
-        {doctors.map((doctor) => (
-         
-            <DocInfo Name={doctor.Name} Speciality={doctor.Specialty} Status={doctor.Online_Status} Languages={doctor.Languages} />
- 
-            ))}
-      </div>  */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={<Home />}/>
+        <Route path="/" element={<MainPage />}/>
+        <Route path="/videoCall" element={<VideoChat />}/>
+    </Routes>
+    </BrowserRouter>
   )
 }
 

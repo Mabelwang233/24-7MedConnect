@@ -7,7 +7,7 @@ const Nav = () => {
   return (
     <div className="nav_container">
         <div className="nav_item">
-            <p>MedConnect</p>
+            <h3>MedConnect</h3>
         </div>
         <div className="nav_item links">
             <a href="#">HOME</a>

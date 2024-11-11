@@ -1,12 +1,13 @@
 .nav_container{
     display: flex;
     justify-content: space-between;
-    background-color: #000000;
+    background-color: rgba(17, 83, 191, 0.7);
     align-items: center;
     color: white; 
     width: 100%;
     top: 0px;
     height: 7vh;
+    box-shadow: rgba(17, 83, 191, 0.7) 0px 25px 20px -20px;
 }
 
 a {
@@ -45,8 +46,7 @@ a:hover{
 
 .nav_item:nth-child(1){
     margin-left: 5vw;
-    height: 100%;
-    font-size: 1.5rem;
+
 }
 
 .links{
