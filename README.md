@@ -1,6 +1,4 @@
 # 24-7MedConnect
-# Project Setup
-
 ## Starting the Client and Server
 Make sure following npm packages are installed
 - `react`
