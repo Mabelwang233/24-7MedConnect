@@ -1,5 +1,5 @@
 import React,{useLayoutEffect, useRef, useState} from 'react'; 
-import './Signup.css';
+import './SignUp.css';
 import { registerDoctor} from '../../../api/api.js';
 import { useNavigate } from 'react-router-dom';
 
