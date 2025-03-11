@@ -5,13 +5,13 @@ Make sure following npm packages are installed
 - `express`
 - `nodemon`
 ```bash
-To start the server, run the following command in server directory:
+To start the server, run the following command at root:
 
-npx nodemon server.js
+npm run server
 
-To start the client, use the following command in client directory:
+To start the client, run the following command at root:
 
-npm run dev
+npm run client
 
 you will also have to include a GEMINI_API in .env file in server folder
 ```
